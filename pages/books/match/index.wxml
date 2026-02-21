@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="header">教材匹配</view>
+
+  <view class="card">
+    <view class="field">
+      <view class="label">高校</view>
+      <picker mode="selector" range="{{universities}}" value="{{universityIndex}}" bindchange="onUniversityChange">
+        <view class="picker">{{selectedUniversity}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">学年</view>
+      <picker mode="selector" range="{{schoolYears}}" value="{{yearIndex}}" bindchange="onYearChange">
+        <view class="picker">{{selectedSchoolYear}}</view>
+      </picker>
+    </view>
+
+    <button class="btn" loading="{{loading}}" bindtap="onMatch">生成教材清单</button>
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+  </view>
+
+  <view class="tip">
+    当前清单来源：{{fromServer ? '服务端匹配结果' : '默认教材方案'}}
+  </view>
+
+  <view class="list">
+    <view class="item" wx:for="{{plan}}" wx:key="title">
+      <view class="course">{{item.course}}</view>
+      <view class="title">{{item.title}}</view>
+      <view class="author">{{item.author}}</view>
+    </view>
+  </view>
+
+  <button class="btn ghost" bindtap="onGoSell">我要上传二手书</button>
+</view>

@@ -1,0 +1,138 @@
+.page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.balance-card {
+  background: linear-gradient(135deg, #0f172a, #1d2939);
+  color: #ffffff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.label {
+  font-size: 24rpx;
+  opacity: 0.86;
+}
+
+.balance {
+  margin-top: 10rpx;
+  font-size: 52rpx;
+  font-weight: 700;
+}
+
+.sub {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  opacity: 0.84;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12rpx;
+  margin-top: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.quick-btn {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  background: #f2f4f7;
+  color: #111827;
+}
+
+.custom-row {
+  margin-top: 12rpx;
+  display: flex;
+  gap: 12rpx;
+}
+
+.amount-input {
+  flex: 1;
+  min-height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 12rpx;
+  background: #f2f4f7;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.custom-btn {
+  min-width: 150rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 12rpx;
+  background: #111827;
+  color: #ffffff;
+  font-size: 28rpx;
+}
+
+.record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clear-btn {
+  border-radius: 999rpx;
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.empty {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #98a2b3;
+}
+
+.record-item {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f2f4f7;
+  display: flex;
+  align-items: center;
+}
+
+.record-item:last-child {
+  border-bottom: 0;
+}
+
+.record-main {
+  flex: 1;
+}
+
+.record-title {
+  font-size: 28rpx;
+  color: #111827;
+}
+
+.record-time {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #98a2b3;
+}
+
+.record-amount {
+  font-size: 30rpx;
+  color: #067647;
+  font-weight: 600;
+}

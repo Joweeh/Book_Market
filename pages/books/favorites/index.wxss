@@ -1,0 +1,11 @@
+.page { padding: 24rpx; background: #f7f7f7; min-height: 100vh; }
+.header { font-size: 34rpx; font-weight: 600; margin-bottom: 20rpx; }
+.state { color: #666; margin: 16rpx 0; }
+.error { color: #c43; }
+.list { display: flex; flex-direction: column; gap: 16rpx; }
+.card { display: flex; gap: 12rpx; align-items: center; background: #fff; padding: 16rpx; border-radius: 16rpx; }
+.cover { width: 120rpx; height: 150rpx; border-radius: 8rpx; background: #eee; }
+.meta { flex: 1; }
+.title { font-size: 28rpx; font-weight: 600; margin-bottom: 6rpx; }
+.line { font-size: 22rpx; color: #555; }
+.remove { margin-left: 8rpx; }

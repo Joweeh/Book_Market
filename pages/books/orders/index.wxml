@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="header">我的订单</view>
+
+  <view wx:if="{{loading}}" class="state">加载中...</view>
+  <view wx:if="{{error}}" class="state error">{{error}}</view>
+  <view wx:if="{{!loading && orders.length === 0}}" class="state">暂无订单</view>
+
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card" wx:for="{{orders}}" wx:key="id">
+      <view class="order-head">
+        <text>订单ID: {{item.id}}</text>
+        <text>状态: {{item.status}}</text>
+      </view>
+      <view class="order-line">订单号: {{item.order_no}}</view>
+      <view class="order-line">总价: ￥{{item.total}}</view>
+      <view class="order-line">创建时间: {{item.created_at}}</view>
+
+      <button
+        wx:if="{{item.canCancel}}"
+        class="cancel-btn"
+        size="mini"
+        data-id="{{item.id}}"
+        bindtap="onCancel"
+      >
+        取消订单
+      </button>
+
+      <view class="items" wx:if="{{item.normalizedItems.length > 0}}">
+        <view class="item" wx:for="{{item.normalizedItems}}" wx:key="id">
+          <text>{{item.title}}</text>
+          <text>x{{item.quantity}}</text>
+          <text>￥{{item.price}}</text>
+          <button class="mini" size="mini" data-id="{{item.id}}" bindtap="onTapBook">查看</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

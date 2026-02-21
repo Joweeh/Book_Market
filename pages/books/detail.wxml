@@ -1,0 +1,77 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="state">正在加载详情...</view>
+  <view wx:if="{{error}}" class="state error">
+    <text>{{error}}</text>
+    <button class="retry-btn" bindtap="onRetry">重试</button>
+  </view>
+
+  <view wx:if="{{book}}" class="content">
+    <view class="hero-card">
+      <swiper class="hero-swiper" indicator-dots="{{gallery.length > 1}}" autoplay="{{gallery.length > 1}}" circular="{{gallery.length > 1}}">
+        <swiper-item wx:for="{{gallery}}" wx:key="*this">
+          <image class="hero-image" src="{{item}}" mode="aspectFill" />
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class="card">
+      <view class="title">{{book.title}}</view>
+      <view class="author">{{book.author}}</view>
+      <view class="price-row">
+        <text class="price">¥{{book.price}}</text>
+        <text class="origin-price">¥{{book.originPrice}}</text>
+      </view>
+      <view class="chip-row">
+        <text class="chip chip-strong">平台验收</text>
+        <text class="chip">支持议价</text>
+        <text class="chip">同城优先</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">图书信息</view>
+      <view class="info-row" wx:for="{{infoRows}}" wx:key="label">
+        <text class="info-label">{{item.label}}</text>
+        <text class="info-value">{{item.value}}</text>
+      </view>
+      <view class="tags" wx:if="{{book.tags.length}}">
+        <text class="tag" wx:for="{{book.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">书况说明</view>
+      <view class="desc">{{book.desc || '暂无额外说明，支持联系卖家补充细节。'}}</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">交易保障</view>
+      <view class="guard-list">
+        <view class="guard-item">平台审核后上架，成色评级透明</view>
+        <view class="guard-item">支持同校面交，降低物流和等待成本</view>
+        <view class="guard-item">下单前可收藏，批量加入购物车结算</view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{recommendBooks.length}}">
+      <view class="section-title">相关推荐</view>
+      <view class="recommend-list">
+        <view class="recommend-item" wx:for="{{recommendBooks}}" wx:key="id" data-id="{{item.id}}" bindtap="onOpenRecommend">
+          <image class="recommend-cover" src="{{item.cover}}" mode="aspectFill" />
+          <view class="recommend-main">
+            <view class="recommend-title">{{item.title}}</view>
+            <view class="recommend-sub">{{item.course || item.author}}</view>
+          </view>
+          <view class="recommend-price">¥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{book}}" class="bottom-bar">
+    <button class="btn btn-light" loading="{{actionLoading}}" bindtap="onToggleFavorite">{{favorite ? '已收藏' : '收藏'}}</button>
+    <button class="btn btn-light" bindtap="onOpenCart">购物车</button>
+    <button class="btn btn-mid" loading="{{actionLoading}}" bindtap="onAddCart">加入购物车</button>
+    <button class="btn btn-main" loading="{{actionLoading}}" bindtap="onBuyNow">立即购买</button>
+  </view>
+</view>

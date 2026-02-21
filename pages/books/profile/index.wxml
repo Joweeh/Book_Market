@@ -1,0 +1,80 @@
+<view class="page">
+  <view class="card">
+    <view class="avatar-row">
+      <view class="label">头像</view>
+      <view class="avatar-wrap" bindtap="onChooseAvatar">
+        <image wx:if="{{form.avatar}}" class="avatar" src="{{form.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar avatar-placeholder">选图</view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label">昵称</view>
+      <input class="input" value="{{form.nick}}" data-field="nick" bindinput="onInput" placeholder="请输入昵称" />
+    </view>
+
+    <view class="field">
+      <view class="label">性别</view>
+      <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+        <view class="picker">{{genderOptions[genderIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">手机号</view>
+      <input class="input" value="{{form.phone}}" data-field="phone" bindinput="onInput" placeholder="选填" />
+    </view>
+
+    <view class="field">
+      <view class="label">微信号</view>
+      <input class="input" value="{{form.wechatId}}" data-field="wechatId" bindinput="onInput" placeholder="选填" />
+    </view>
+
+    <view class="field">
+      <view class="label">地区（省/市/区）</view>
+      <picker
+        mode="multiSelector"
+        range="{{locationColumns}}"
+        value="{{locationIndex}}"
+        bindchange="onLocationChange"
+        bindcolumnchange="onLocationColumnChange"
+      >
+        <view class="picker">{{form.location}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">学校</view>
+      <picker mode="selector" range="{{universities}}" value="{{universityIndex}}" bindchange="onUniversityChange">
+        <view class="picker">{{form.university}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">学年</view>
+      <picker mode="selector" range="{{schoolYears}}" value="{{yearIndex}}" bindchange="onYearChange">
+        <view class="picker">{{form.schoolYear}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">专业</view>
+      <input class="input" value="{{form.major}}" data-field="major" bindinput="onInput" placeholder="例如：计算机科学与技术" />
+    </view>
+
+    <view class="field">
+      <view class="label">当前课表课程（逗号分隔）</view>
+      <textarea
+        class="textarea"
+        value="{{form.coursesText}}"
+        data-field="coursesText"
+        bindinput="onInput"
+        maxlength="300"
+        placeholder="例如：微积分，线性代数，概率论，C语言，马原"
+      />
+    </view>
+  </view>
+
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <button class="save-btn" loading="{{saving}}" bindtap="onSave">保存资料</button>
+</view>

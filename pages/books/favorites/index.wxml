@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="header">我的收藏</view>
+
+  <view wx:if="{{loading}}" class="state">加载中...</view>
+  <view wx:if="{{error}}" class="state error">{{error}}</view>
+  <view wx:if="{{!loading && items.length === 0}}" class="state">你还没有收藏图书</view>
+
+  <view class="list" wx:if="{{items.length > 0}}">
+    <view class="card" wx:for="{{items}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapBook">
+      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="meta">
+        <view class="title">{{item.title}}</view>
+        <view class="line">{{item.author || '未知作者'}}</view>
+        <view class="line">￥{{item.price}}</view>
+      </view>
+      <button class="remove" size="mini" data-id="{{item.id}}" catchtap="onRemove">移除</button>
+    </view>
+  </view>
+</view>

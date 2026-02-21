@@ -1,0 +1,16 @@
+<view class="tabbar-wrap">
+  <view class="tabbar">
+    <view
+      wx:for="{{list}}"
+      wx:key="key"
+      wx:for-item="item"
+      wx:for-index="index"
+      class="tab-item {{active === index ? 'active' : ''}}"
+      data-index="{{index}}"
+      bindtap="onChange"
+    >
+      <view class="icon-badge">{{item.short}}</view>
+      <view class="tab-text">{{item.text}}</view>
+    </view>
+  </view>
+</view>

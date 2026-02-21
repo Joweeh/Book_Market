@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="profile-card" bindtap="onTapProfile">
+    <view class="avatar-wrap">
+      <image wx:if="{{avatar}}" class="avatar" src="{{avatar}}" mode="aspectFill" />
+      <view wx:else class="avatar avatar-placeholder">书</view>
+    </view>
+    <view class="profile-meta">
+      <view class="name-row">
+        <text class="name">{{displayName}}</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="id-text">{{displayId}}</view>
+      <view class="school-text">{{schoolLine}}</view>
+    </view>
+  </view>
+
+  <view class="status-card">
+    <view class="status-text" wx:if="{{loginError}}">{{loginError}}</view>
+    <view class="status-text" wx:else>{{user ? '已登录' : '未登录，点击微信登录后使用完整功能'}}</view>
+    <button class="login-btn" loading="{{loading}}" bindtap="onLoginTap">{{user ? '重新登录' : '微信登录'}}</button>
+  </view>
+
+  <view class="wallet-card" bindtap="onTapWallet">
+    <view class="wallet-main">
+      <view class="wallet-title">账户余额</view>
+      <view class="wallet-balance">¥ {{walletBalance}}</view>
+      <view class="wallet-subtitle">充值、余额明细与资金记录</view>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <view class="group" wx:for="{{featureGroups}}" wx:key="title" wx:for-item="group">
+    <view class="group-title">{{group.title}}</view>
+    <view class="menu-list">
+      <view
+        class="menu-item"
+        wx:for="{{group.items}}"
+        wx:key="key"
+        wx:for-item="menu"
+        data-route="{{menu.route}}"
+        bindtap="onTapFeature"
+      >
+        <view class="menu-main">
+          <view class="menu-title">{{menu.title}}</view>
+          <view class="menu-subtitle">{{menu.subtitle}}</view>
+        </view>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

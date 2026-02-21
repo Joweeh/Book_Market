@@ -1,0 +1,12 @@
+.page { padding: 24rpx; background: #f7f7f7; min-height: 100vh; }
+.header { font-size: 34rpx; font-weight: 600; margin-bottom: 20rpx; }
+.state { color: #666; margin: 16rpx 0; }
+.error { color: #c43; }
+.order-list { display: flex; flex-direction: column; gap: 16rpx; }
+.order-card { background: #fff; border-radius: 16rpx; padding: 16rpx; }
+.order-head { display: flex; justify-content: space-between; font-size: 24rpx; font-weight: 600; }
+.order-line { color: #555; font-size: 22rpx; margin-top: 6rpx; }
+.cancel-btn { margin-top: 8rpx; }
+.items { margin-top: 10rpx; border-top: 1px solid #eee; padding-top: 10rpx; }
+.item { display: flex; align-items: center; justify-content: space-between; font-size: 22rpx; padding: 8rpx 0; }
+.mini { margin-left: 8rpx; }

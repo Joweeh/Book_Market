@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="header">购物车</view>
+
+  <view wx:if="{{loading}}" class="state">加载中...</view>
+  <view wx:if="{{error}}" class="state error">{{error}}</view>
+
+  <view wx:if="{{!loading && items.length === 0}}" class="state">购物车是空的</view>
+
+  <view class="list" wx:if="{{items.length > 0}}">
+    <view class="card" wx:for="{{items}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapBook">
+      <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="meta">
+        <view class="title">{{item.title}}</view>
+        <view class="line">作者：{{item.author || '未知'}}</view>
+        <view class="line">数量：{{item.quantity}}</view>
+        <view class="line">价格：￥{{item.price}}</view>
+      </view>
+      <button class="remove" size="mini" data-id="{{item.id}}" catchtap="onRemove">移除</button>
+    </view>
+  </view>
+
+  <button wx:if="{{items.length > 0}}" class="checkout" loading="{{creating}}" bindtap="onCheckout">去结算</button>
+</view>

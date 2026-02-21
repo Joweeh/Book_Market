@@ -1,0 +1,103 @@
+<view class="page">
+  <view class="top-bar">
+    <view class="search-wrap">
+      <input
+        class="search-input"
+        placeholder="搜索教材、课程、作者"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+        bindconfirm="onSearchConfirm"
+      />
+    </view>
+    <button class="msg-btn" size="mini" bindtap="onTapMessage">消息</button>
+  </view>
+
+  <view class="header-row">
+    <view>
+      <view class="header">校园二手书</view>
+      <view class="user-line">{{userText}}</view>
+    </view>
+    <button class="mini-btn" size="mini" loading="{{authLoading}}" bindtap="onTapLogin">
+      {{user ? '重新登录' : '微信登录'}}
+    </button>
+  </view>
+
+  <swiper class="banner" autoplay="true" interval="3500" circular="true">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <view class="banner-item" style="background-image: url('{{item.image}}')">
+        <view class="banner-mask">
+          <view class="banner-title">{{item.title}}</view>
+          <view class="banner-sub">{{item.subtitle}}</view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <scroll-view class="category-scroll" scroll-x="true" show-scrollbar="false">
+    <view class="category-row">
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category {{activeCategory===item.id?'active':''}}"
+        data-id="{{item.id}}"
+        bindtap="onTapCategory"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="section">
+    <view class="section-title">{{recommendationTitle}}</view>
+    <view class="section-sub">{{recommendationSubtitle}}</view>
+    <view class="list compact">
+      <view class="card" wx:for="{{recommendBooks}}" wx:key="id" bindtap="onTapBook" data-id="{{item.id}}">
+        <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="meta">
+          <view class="title">{{item.title}}</view>
+          <view class="author">{{item.author}}</view>
+          <view class="price">￥{{item.price}}</view>
+          <view class="tags">
+            <text class="tag recommend" wx:for="{{item.reasons}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">热度榜单</view>
+    <view class="rank-list">
+      <view class="rank-item" wx:for="{{hotBooks}}" wx:key="id" bindtap="onTapBook" data-id="{{item.id}}">
+        <view class="rank-no">{{index + 1}}</view>
+        <view class="rank-main">
+          <view class="rank-title">{{item.title}}</view>
+          <view class="rank-sub">{{item.author}}</view>
+        </view>
+        <view class="rank-price">￥{{item.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="state">加载中...</view>
+  <view wx:if="{{error}}" class="state error">{{error}}</view>
+  <button wx:if="{{error}}" class="retry" bindtap="onRetry">重试</button>
+
+  <view class="section">
+    <view class="section-title">教材列表</view>
+    <view class="list">
+      <view class="card" wx:for="{{books}}" wx:key="id" bindtap="onTapBook" data-id="{{item.id}}">
+        <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="meta">
+          <view class="title">{{item.title}}</view>
+          <view class="author">{{item.author}}</view>
+          <view class="price">￥{{item.price}}</view>
+          <view class="tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+@import 'style/iconfont.wxss';
+
+@import 'style/theme.wxss';
+
+.cell--noborder .t-cell::after {
+  border-bottom: none !important;
+}
+
+page {
+  padding-bottom: calc(112rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}

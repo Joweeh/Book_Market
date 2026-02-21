@@ -1,0 +1,58 @@
+<view class="page">
+  <view class="top-bar">
+    <view class="search-wrap">
+      <input
+        class="search-input"
+        placeholder="搜索笔记、真题、课件"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+        bindconfirm="onSearchConfirm"
+      />
+    </view>
+    <button class="msg-btn" size="mini" bindtap="onTapMessage">消息</button>
+  </view>
+
+  <view class="header-row">
+    <view>
+      <view class="header">资料共享</view>
+      <view class="sub">支持上传后审核，审核通过后推荐展示</view>
+    </view>
+    <button class="switch-btn" size="mini" bindtap="onSwitchBooks">看教材</button>
+  </view>
+
+  <view class="upload-card">
+    <view class="upload-title">上传资料</view>
+    <view class="upload-text">拍照或上传文档后进入审核队列，支持审核评级与价格管理。</view>
+    <button class="upload-btn" bindtap="onTapUpload">去上传</button>
+  </view>
+
+  <scroll-view class="category-scroll" scroll-x="true" show-scrollbar="false">
+    <view class="category-row">
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category {{activeCategory===item.id?'active':''}}"
+        data-id="{{item.id}}"
+        bindtap="onTapCategory"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="section-title">推荐资料</view>
+  <view class="empty" wx:if="{{materials.length===0}}">没有匹配资料，换个关键词试试。</view>
+
+  <view class="list" wx:if="{{materials.length>0}}">
+    <view class="item" wx:for="{{materials}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapItem">
+      <view class="item-title">{{item.title}}</view>
+      <view class="item-sub">{{item.school}} · {{item.course}}</view>
+      <view class="item-summary">{{item.summary}}</view>
+      <view class="item-foot">
+        <text class="badge">热度 {{item.hot}}</text>
+        <button class="open-btn" size="mini">查看</button>
+      </view>
+    </view>
+  </view>
+</view>

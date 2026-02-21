@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="balance-card">
+    <view class="label">当前余额</view>
+    <view class="balance">¥ {{wallet.balance.toFixed(2)}}</view>
+    <view class="sub">本页面为演示钱包，余额数据保存在本地设备</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">快捷充值</view>
+    <view class="quick-grid">
+      <button
+        class="quick-btn"
+        wx:for="{{quickAmounts}}"
+        wx:key="*this"
+        data-amount="{{item}}"
+        bindtap="onQuickRecharge"
+      >
+        ¥{{item}}
+      </button>
+    </view>
+
+    <view class="section-title">自定义金额</view>
+    <view class="custom-row">
+      <input class="amount-input" type="digit" value="{{customAmount}}" bindinput="onCustomInput" placeholder="输入金额" />
+      <button class="custom-btn" bindtap="onCustomRecharge">充值</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="record-header">
+      <view class="section-title">余额记录</view>
+      <button class="clear-btn" size="mini" bindtap="onClearRecords">清空</button>
+    </view>
+
+    <view wx:if="{{transactionView.length===0}}" class="empty">暂无记录</view>
+    <view wx:else>
+      <view class="record-item" wx:for="{{transactionView}}" wx:key="id">
+        <view class="record-main">
+          <view class="record-title">{{item.source}}</view>
+          <view class="record-time">{{item.timeText}}</view>
+        </view>
+        <view class="record-amount">+¥{{item.amount}}</view>
+      </view>
+    </view>
+  </view>
+</view>

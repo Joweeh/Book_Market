@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/books/index",
+    "pages/material/index",
+    "pages/books/cart/index",
+    "pages/books/me/index",
+    "pages/books/profile/index",
+    "pages/books/wallet/index",
+    "pages/books/feedback/index",
+    "pages/books/detail",
+    "pages/books/favorites/index",
+    "pages/books/orders/index",
+    "pages/books/match/index",
+    "pages/books/sell/index"
+  ],
+  "tabBar": {
+    "custom": true,
+    "color": "#667085",
+    "selectedColor": "#111827",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/books/index",
+        "text": "二手书"
+      },
+      {
+        "pagePath": "pages/material/index",
+        "text": "资料"
+      },
+      {
+        "pagePath": "pages/books/cart/index",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/books/me/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "校园书市",
+    "navigationBarTextStyle": "black"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

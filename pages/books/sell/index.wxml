@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="header">二手书上传审核</view>
+
+  <view class="card">
+    <view class="field">
+      <view class="label">书名</view>
+      <input class="input" value="{{form.title}}" bindinput="onTitleInput" placeholder="例如：高等数学（上）" />
+    </view>
+
+    <view class="field">
+      <view class="label">课程</view>
+      <picker mode="selector" range="{{courseOptions}}" value="{{courseIndex}}" bindchange="onCourseChange">
+        <view class="picker">{{form.course}}</view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <view class="label">预期售价（元）</view>
+      <input
+        class="input"
+        value="{{form.expectedPrice}}"
+        bindinput="onPriceInput"
+        type="digit"
+        placeholder="例如：35"
+      />
+    </view>
+
+    <view class="field">
+      <view class="label">成色说明</view>
+      <textarea
+        class="textarea"
+        value="{{form.conditionNote}}"
+        bindinput="onConditionInput"
+        maxlength="300"
+        placeholder="例如：无笔记，封面轻微磨损"
+      />
+    </view>
+
+    <view class="field">
+      <view class="label">上传图片（最多 6 张）</view>
+      <view class="img-list">
+        <view class="img-item" wx:for="{{images}}" wx:key="localPath">
+          <image class="img" src="{{item.localPath}}" mode="aspectFill" />
+          <view class="img-remove" data-index="{{index}}" bindtap="onRemoveImage">删除</view>
+        </view>
+      </view>
+      <button size="mini" bindtap="onChooseImages">选择图片</button>
+    </view>
+
+    <button class="btn" loading="{{submitting}}" bindtap="onSubmit">提交审核</button>
+  </view>
+
+  <view class="header sub-header">我的审核记录</view>
+  <view wx:if="{{loadingList}}" class="state">加载中...</view>
+  <view wx:if="{{!loadingList && records.length === 0}}" class="state">暂无记录</view>
+  <view class="list" wx:if="{{records.length > 0}}">
+    <view class="item" wx:for="{{records}}" wx:key="id">
+      <view class="title-row">
+        <view class="title">{{item.title}}</view>
+        <view class="status">{{item.status}}</view>
+      </view>
+      <view class="line">课程：{{item.course}}</view>
+      <view class="line">预期价格：{{item.expected_price || item.expectedPrice}}</view>
+      <view class="line" wx:if="{{item.final_price || item.finalPrice}}">
+        审核定价：{{item.final_price || item.finalPrice}}
+      </view>
+      <view class="line" wx:if="{{item.quality_grade || item.qualityGrade}}">
+        成色评级：{{item.quality_grade || item.qualityGrade}}
+      </view>
+      <view class="line" wx:if="{{item.admin_note || item.adminNote}}">
+        审核备注：{{item.admin_note || item.adminNote}}
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="card">
+    <view class="title">提交反馈</view>
+    <view class="subtitle">描述你的建议或遇到的问题（可附图、位置）</view>
+
+    <view class="field">
+      <view class="label">反馈内容</view>
+      <textarea
+        class="textarea"
+        placeholder="例如：某个按钮点了没反应 / 登录失败 / 页面排版问题"
+        maxlength="500"
+        value="{{content}}"
+        bindinput="onContentInput"
+      />
+      <view class="hint">{{content.length}} / 500</view>
+    </view>
+
+    <view class="field">
+      <view class="label">图片（最多6张）</view>
+      <view class="img-row">
+        <view class="img" wx:for="{{images}}" wx:key="*this">
+          <image class="img-preview" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-src="{{item}}" />
+          <view class="img-remove" bindtap="onRemoveImage" data-src="{{item}}">×</view>
+        </view>
+        <view class="img add" wx:if="{{images.length < 6}}">
+          <view class="add-actions">
+            <button class="mini" size="mini" bindtap="onTakePhoto">拍照</button>
+            <button class="mini" size="mini" bindtap="onChooseImages">选图</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label">位置（可选）</view>
+      <view class="location-row">
+        <view class="location-text">{{locationText}}</view>
+        <button class="mini" size="mini" bindtap="onChooseLocation">{{location ? '更换' : '选择'}}</button>
+        <button class="mini ghost" size="mini" wx:if="{{location}}" bindtap="onClearLocation">清除</button>
+      </view>
+    </view>
+
+    <button class="submit" loading="{{submitting}}" disabled="{{submitting}}" bindtap="onSubmit">提交</button>
+  </view>
+
+  <view class="card" wx:if="{{history.length}}">
+    <view class="title">我的反馈记录</view>
+    <view class="history">
+      <view class="history-item" wx:for="{{history}}" wx:key="id">
+        <view class="history-top">
+          <view class="history-time">{{item.time}}</view>
+          <view class="history-status">{{item.status}}</view>
+        </view>
+        <view class="history-content">{{item.content}}</view>
+        <view class="history-meta" wx:if="{{item.locationText}}">位置：{{item.locationText}}</view>
+        <view class="history-meta" wx:if="{{item.images && item.images.length}}">图片：{{item.images.length}} 张</view>
+      </view>
+    </view>
+  </view>
+</view>
+
